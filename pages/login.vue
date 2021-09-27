@@ -31,7 +31,6 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-// import { strCapitalize } from '~/utils'
 export default {
   components: {
     ValidationObserver,
@@ -66,25 +65,6 @@ export default {
     },
   },
   methods: {
-    // async submit(e) {
-    //   const credentials = { email: 'foo@example.com', password: 'password' }
-
-    //   const formData = new FormData()
-
-    //   for (const name in credentials) {
-    //     formData.append(name, credentials[name])
-    //   }
-
-    //   const data = await fetch('http://obscur.space/mkomov-test/sign-in', {
-    //     method: 'POST',
-    //     body: formData,
-    //   }).then((res) => res.json())
-
-    //   localStorage.token = `${strCapitalize(data.token_type)} ${
-    //     data.access_token
-    //   }`
-    //   localStorage.expires = Date.now() + data.expires_in * 60
-    // },
     submit() {
       this.$refs.form.validate().then((success) => {
         if (this.email && this.password) {

@@ -1,4 +1,3 @@
-// import { baseUrl } from '../api'
 import { contacts } from '../mocks/contacts'
 
 export const state = () => ({
@@ -35,22 +34,6 @@ export const getters = {}
 
 export const actions = {
   getContacts({ commit }, params) {
-    // const url = new URL(`${baseUrl}/contacts?offset=0&limit=10&sortDir=asc`)
-    // for (const param in params) {
-    //   url.searchParams.set(param, params[param])
-    // }
-    // commit('loadingContacts', true)
-    // fetch(url, {
-    //   headers: {
-    //     Accept: 'application/json',
-    //     Authorization: localStorage.token,
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => commit('contactsSuccess', data.items))
-    //   .catch(() => commit('contactsFail'))
-    //   .finally(() => commit('loadingContacts', false))
-
     const { search, sortBy, sortDir, offset, limit } = params
     commit('loadingContacts', true)
     const filteredContacts = contacts.items
