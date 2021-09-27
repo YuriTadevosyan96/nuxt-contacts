@@ -4,7 +4,7 @@ export default function ({ store, redirect, route }) {
       if (process.server) {
         return redirect('/login')
       } else {
-        return window.location.replace('/login')
+        return window.location.replace('/nuxt-contacts/login')
       }
     }
   }
