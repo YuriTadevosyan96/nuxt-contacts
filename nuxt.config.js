@@ -1,5 +1,6 @@
 export default {
-  mode: 'static',
+  target: 'static',
+  ssr: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt-contacts',
