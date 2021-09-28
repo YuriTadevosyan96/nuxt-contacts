@@ -62,15 +62,17 @@ export default {
     error() {
       return this.$store.state.contacts.error
     },
+    isMobile() {
+      return this.$store.state.isMobile
+    },
+  },
+  mounted() {
+    if (this.isMobile) {
+      this.reduceHeight()
+    }
   },
   updated() {
-    // calculate height dynamically
-    this.parentHeight = this.$parent.$el.offsetHeight
-    const height = this.$el.offsetHeight
-    if (this.parentHeight > window.innerHeight) {
-      this.contactListStyles.height =
-        height - (this.parentHeight - window.innerHeight) + 'px'
-    }
+    this.reduceHeight()
   },
   methods: {
     infiniteScroll() {
@@ -85,6 +87,15 @@ export default {
             })
           }
         }
+      }
+    },
+    reduceHeight() {
+      // calculate height dynamically
+      this.parentHeight = this.$parent.$el.offsetHeight
+      const height = this.$el.offsetHeight
+      if (this.parentHeight > window.innerHeight) {
+        this.contactListStyles.height =
+          height - (this.parentHeight - window.innerHeight) + 'px'
       }
     },
   },
