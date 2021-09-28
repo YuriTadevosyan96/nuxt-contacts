@@ -68,11 +68,11 @@ export default {
   },
   mounted() {
     if (this.isMobile) {
-      this.reduceHeight()
+      this.calculateHeight()
     }
   },
   updated() {
-    this.reduceHeight()
+    this.calculateHeight()
   },
   methods: {
     infiniteScroll() {
@@ -89,13 +89,16 @@ export default {
         }
       }
     },
-    reduceHeight() {
+    calculateHeight() {
       // calculate height dynamically
       this.parentHeight = this.$parent.$el.offsetHeight
       const height = this.$el.offsetHeight
       if (this.parentHeight > window.innerHeight) {
         this.contactListStyles.height =
           height - (this.parentHeight - window.innerHeight) + 'px'
+      } else {
+        this.contactListStyles.height =
+          height + (window.innerHeight + this.parentHeight)
       }
     },
   },
