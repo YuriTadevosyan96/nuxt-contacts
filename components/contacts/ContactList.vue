@@ -27,7 +27,10 @@
 
 <script>
 export default {
-  props: { activateInfiniteScroll: { type: Boolean } },
+  props: {
+    activateInfiniteScroll: { type: Boolean },
+    contactListDynamicHeight: { type: String, default: 'auto' },
+  },
   data() {
     return {
       parentHeight: 0,
@@ -68,6 +71,7 @@ export default {
   },
   mounted() {
     if (this.isMobile) {
+      this.contactListStyles.height = this.contactListDynamicHeight
       this.calculateHeight()
     }
   },
@@ -96,9 +100,6 @@ export default {
       if (this.parentHeight > window.innerHeight) {
         this.contactListStyles.height =
           height - (this.parentHeight - window.innerHeight) + 'px'
-      } else {
-        this.contactListStyles.height =
-          height + (window.innerHeight + this.parentHeight)
       }
     },
   },

@@ -44,13 +44,17 @@
         </div>
       </modal>
     </portal>
-    <Header :with-border-bottom="!isMobile" />
+    <Header ref="header" :with-border-bottom="!isMobile" />
     <div class="content">
-      <Search />
-      <contacts-filter />
-      <contact-list :activate-infinite-scroll="showMoreClicked" />
+      <Search ref="search" />
+      <contacts-filter ref="filter" />
+      <contact-list
+        :activate-infinite-scroll="showMoreClicked"
+        :contact-list-dynamic-height="contactListDynamicHeight"
+      />
       <Button
         v-if="showMore"
+        ref="button"
         color="secondary"
         :style="buttonStyles"
         :hoverable="false"
@@ -70,7 +74,12 @@ import Search from './contacts/Search.vue'
 export default {
   components: { Header, Search, ContactList },
   data() {
-    return { showMoreClicked: false, messageReceiverName: '', message: '' }
+    return {
+      showMoreClicked: false,
+      messageReceiverName: '',
+      message: '',
+      contactListDynamicHeight: 'auto',
+    }
   },
   computed: {
     isMobile() {
@@ -121,6 +130,15 @@ export default {
         this.message = ''
       }
     },
+  },
+  mounted() {
+    let height = 0
+    for (const ref in this.$refs) {
+      if (ref) {
+        height += this.$refs[ref].$el.offsetHeight
+      }
+    }
+    this.contactListDynamicHeight = window.innerHeight - height + 'px'
   },
   methods: {
     handleShowMore() {
