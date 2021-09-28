@@ -72,11 +72,20 @@ export default {
   mounted() {
     if (this.isMobile) {
       this.contactListStyles.height = this.contactListDynamicHeight
-      this.calculateHeight()
+
+      if (this.$el.offsetHeight > window.innerHeight) {
+        this.calculateHeight()
+      }
     }
   },
   updated() {
-    this.calculateHeight()
+    if (this.isMobile) {
+      if (this.$el.offsetHeight > window.innerHeight) {
+        this.calculateHeight()
+      }
+    } else {
+      this.calculateHeight()
+    }
   },
   methods: {
     infiniteScroll() {
