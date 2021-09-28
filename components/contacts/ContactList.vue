@@ -72,7 +72,6 @@ export default {
   mounted() {
     if (this.isMobile) {
       this.contactListStyles.height = this.contactListDynamicHeight
-
       if (this.$el.offsetHeight > window.innerHeight) {
         this.calculateHeight()
       }
